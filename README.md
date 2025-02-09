@@ -24,10 +24,9 @@ This package will attempt to match a model object against row in Airtable using 
     * On Wagtail 5.x, to enable the snippet-specific import button on the Snippet list view make sure `wagtail_airtable` is above `wagtail.snippets` in your `INSTALLED_APPS`
 * In your settings you will need to map Django models to Airtable settings. Every model you want to map to an Airtable sheet will need:
     * An `AIRTABLE_API_KEY`. You can obtain a personal access token at https://airtable.com/create/tokens - from "Create new token", select the scopes `data.records:read` and `data.records:write`, and under Access, select the base you want to work with. Copy the resulting token and paste it as the value of `AIRTABLE_API_KEY`.
-    * An `AIRTABLE_BASE_KEY` to determine which base to connect to.
+    * An `AIRTABLE_BASE_KEY` to determine which base to connect to. It can be obtained by opening your table in a browser, and get the part right after the airtable.com domain, following this schema: `https://airtable.com/{BASE_KEY}/{TABLE_ID}/`
     * An `AIRTABLE_TABLE_NAME` to determine which table to connect to.
     * An `AIRTABLE_UNIQUE_IDENTIFIER`. This can either be a string or a dictionary mapping the Airtable column name to your unique field in your model.
-    hhh
         * ie. `AIRTABLE_UNIQUE_IDENTIFIER: 'slug',` this will match the `slug` field on your model with the `slug` column name in Airtable. Use this option if your model field and your Airtable column name are identical.
         * ie. `AIRTABLE_UNIQUE_IDENTIFIER: {'Airtable Column Name': 'model_field_name'},` this will map the `Airtable Column Name` to a model field called `model_field_name`. Use this option if your Airtable column name and your model field name are different.
     * An `AIRTABLE_SERIALIZER` that takes a string path to your serializer. This helps map incoming data from Airtable to your model fields. Django Rest Framework is required for this. See the [examples/](examples/) directory for serializer examples.
